@@ -27,10 +27,10 @@ export const Login = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (error) {
+    if (error && !loading) {
       alert(error);
     }
-  }, [error]);
+  }, [error, loading]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,12 +53,14 @@ export const Login = () => {
         dispatch(onLoginSuccess(res));
         const { from } = location.state || {
           from: {
-            pathName: "/",
+            pathname: "/",
           },
         };
         history.push(from);
       }
     }
+
+    setSubmitted(false);
   };
 
   return (
@@ -116,6 +118,7 @@ export const Login = () => {
                       <button
                         type="submit"
                         className="btn btn-primary btn-user btn-block"
+                        disabled={submitted}
                       >
                         Login
                       </button>
