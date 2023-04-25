@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { history } from "../../helpers";
 import { userService } from "../../services";
 import { AppState } from "../../store";
 import {
@@ -9,7 +11,6 @@ import {
   onLogin,
   onLoginSuccess,
 } from "../../store/account/actions";
-import { history } from "../../helpers";
 
 export const Login = () => {
   const [input, setInput] = useState({
@@ -161,9 +162,9 @@ export const Login = () => {
                       </a>
                     </div>
                     <div className="text-center">
-                      <a className="small" href="register.html">
+                      <Link to={"/register"} className="small">
                         Create an Account!
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
