@@ -17,13 +17,13 @@ function App() {
         <Routes>
           <Route
             element={
-              account.token ? <Navigate to="/admin/home" replace /> : <Login />
+              account.token ? <Navigate to="/" replace /> : <Login />
             }
-            path="/"
+            path="/login"
           />
           <Route
-            element={account.token ? <Admin /> : <Navigate to="/" replace />}
-            path="/admin/home"
+            element={account.token ? <Admin /> : <Navigate to="/login" replace />}
+            path="/"
           />
         </Routes>
       </Router>
