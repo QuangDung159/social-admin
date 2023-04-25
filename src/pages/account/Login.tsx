@@ -1,6 +1,37 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { AppState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router";
+import { login, logout } from "../../store/account/actions";
 
 export const Login = () => {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const loading = useSelector((state: AppState) => state.account.loading);
+  const { email, password } = input;
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(logout());
+  }, [dispatch]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInput({ ...input, [name]: value });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
+    if (email && password) {
+      dispatch(login(email, password));
+    }
+  };
+
   return (
     <div className="container">
       {/* Outer Row */}
@@ -24,6 +55,8 @@ export const Login = () => {
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
                           placeholder="Enter Email Address..."
+                          onChange={handleChange}
+                          name="email"
                         />
                       </div>
                       <div className="form-group">
@@ -32,9 +65,11 @@ export const Login = () => {
                           className="form-control form-control-user"
                           id="exampleInputPassword"
                           placeholder="Password"
+                          onChange={handleChange}
+                          name="password"
                         />
                       </div>
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <div className="custom-control custom-checkbox small">
                           <input
                             type="checkbox"
@@ -48,7 +83,7 @@ export const Login = () => {
                             Remember Me
                           </label>
                         </div>
-                      </div>
+                      </div> */}
                       <a
                         href="index.html"
                         className="btn btn-primary btn-user btn-block"
