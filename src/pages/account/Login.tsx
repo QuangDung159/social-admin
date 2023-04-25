@@ -1,8 +1,15 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { AppState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { login, logout } from "../../store/account/actions";
+import { userService } from "../../services";
+import { AppState } from "../../store";
+import {
+  loginFail,
+  logout,
+  onLogin,
+  onLoginSuccess,
+} from "../../store/account/actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS } from "../../store/account/types";
 
 export const Login = () => {
   const [input, setInput] = useState({
@@ -11,7 +18,7 @@ export const Login = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const loading = useSelector((state: AppState) => state.account.loading);
-  const { email, password } = input;
+  const error = useSelector((state: AppState) => state.account.error);
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -19,16 +26,32 @@ export const Login = () => {
     dispatch(logout());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const { email, password } = input;
     e.preventDefault();
     setSubmitted(true);
+
     if (email && password) {
-      dispatch(login(email, password));
+      dispatch(onLogin(email, password));
+
+      const res = await userService.login(email, password);
+
+      if (res?.error) {
+        dispatch(loginFail(res.error.toString()));
+      } else {
+        dispatch(onLoginSuccess(res));
+      }
     }
   };
 
@@ -47,7 +70,7 @@ export const Login = () => {
                     <div className="text-center">
                       <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-                    <form className="user">
+                    <form className="user" onSubmit={handleSubmit}>
                       <div className="form-group">
                         <input
                           type="email"
@@ -84,12 +107,12 @@ export const Login = () => {
                           </label>
                         </div>
                       </div> */}
-                      <a
-                        href="index.html"
+                      <button
+                        type="submit"
                         className="btn btn-primary btn-user btn-block"
                       >
                         Login
-                      </a>
+                      </button>
                       <hr />
                       <a
                         href="index.html"

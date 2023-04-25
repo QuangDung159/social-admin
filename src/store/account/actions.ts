@@ -34,6 +34,29 @@ export const login = (email: string, password: string) => {
   };
 };
 
+export const onLogin = (email: string, password: string) => {
+  return {
+    type: LOGIN_REQUEST,
+    payload: { email, password },
+  };
+};
+
+export const onLoginSuccess = (res: any) => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: {
+      token: res.token,
+    },
+  };
+};
+
+export const loginFail = (error: string) => {
+  return {
+    type: LOGIN_FAIL,
+    payload: { error },
+  };
+};
+
 export const logout = (): AccountActionTypes => {
   return {
     type: LOGOUT,
