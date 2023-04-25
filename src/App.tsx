@@ -1,21 +1,30 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import { Login } from "./pages/account";
-import "./styles/sb-admin-2.min.css";
 import { Admin } from "./pages/admin/Admin";
-
-const isLogin: boolean = true;
+import { AppState } from "./store";
+import { AccountState } from "./store/account/types";
+import "./styles/sb-admin-2.min.css";
 
 function App() {
+  const account: AccountState = useSelector((state: AppState) => state.account);
   return (
     <div className="App" id="wrapper">
       <Router>
         <Routes>
           <Route
-            element={isLogin ? <Login></Login> : <Admin />}
+            element={
+              account.token ? <Navigate to="/admin/home" replace /> : <Login />
+            }
             path="/"
-          ></Route>
+          />
+          <Route
+            element={account.token ? <Admin /> : <Navigate to="/" replace />}
+            path="/admin/home"
+          />
         </Routes>
       </Router>
     </div>
