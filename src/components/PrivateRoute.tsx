@@ -5,5 +5,5 @@ export const PrivateRoute = ({
   children,
   ...rest
 }: RouteProps) => {
-  return <Route element={<Login></Login>} {...rest}></Route>;
+  return <Route element={<Login></Login>} path="/"></Route>;
 };
