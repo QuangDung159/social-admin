@@ -9,7 +9,7 @@ import {
   onLogin,
   onLoginSuccess,
 } from "../../store/account/actions";
-import { LOGIN_FAIL, LOGIN_SUCCESS } from "../../store/account/types";
+import { history } from "../../helpers";
 
 export const Login = () => {
   const [input, setInput] = useState({
@@ -51,6 +51,12 @@ export const Login = () => {
         dispatch(loginFail(res.error.toString()));
       } else {
         dispatch(onLoginSuccess(res));
+        const { from } = location.state || {
+          from: {
+            pathName: "/",
+          },
+        };
+        history.push(from);
       }
     }
   };
