@@ -4,10 +4,10 @@ import "./App.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
 import { Login, Register } from "./pages/account";
-import { Admin } from "./pages/admin/Admin";
+import { Admin } from "./pages/admin";
 import { AppState } from "./store";
 import { AccountState } from "./store/account/types";
-import "./styles/sb-admin-2.css";
+import "./styles/sb-admin-2.min.css";
 
 function App() {
   const account: AccountState = useSelector((state: AppState) => state.account);
