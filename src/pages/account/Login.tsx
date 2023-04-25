@@ -47,6 +47,8 @@ export const Login = () => {
 
       const res = await userService.login(email, password);
 
+      setSubmitted(false);
+
       if (res?.error) {
         dispatch(loginFail(res.error.toString()));
       } else {
@@ -59,8 +61,6 @@ export const Login = () => {
         history.push(from);
       }
     }
-
-    setSubmitted(false);
   };
 
   return (
@@ -82,23 +82,37 @@ export const Login = () => {
                       <div className="form-group">
                         <input
                           type="email"
-                          className="form-control form-control-user"
+                          className={`form-control form-control-user ${
+                            submitted && !input.email ? "is-invalid" : ""
+                          }`}
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
-                          placeholder="Enter Email Address..."
+                          placeholder="Enter email address..."
                           onChange={handleChange}
                           name="email"
                         />
+                        {submitted && !input.email && (
+                          <div className="invalid-feedback">
+                            Email is required
+                          </div>
+                        )}
                       </div>
                       <div className="form-group">
                         <input
                           type="password"
-                          className="form-control form-control-user"
+                          className={`form-control form-control-user ${
+                            submitted && !input.password ? "is-invalid" : ""
+                          }`}
                           id="exampleInputPassword"
                           placeholder="Password"
                           onChange={handleChange}
                           name="password"
                         />
+                        {submitted && !input.password && (
+                          <div className="invalid-feedback">
+                            Password is required
+                          </div>
+                        )}
                       </div>
                       {/* <div className="form-group">
                         <div className="custom-control custom-checkbox small">
@@ -118,8 +132,11 @@ export const Login = () => {
                       <button
                         type="submit"
                         className="btn btn-primary btn-user btn-block"
-                        disabled={submitted}
+                        disabled={loading}
                       >
+                        {loading && (
+                          <span className="spinner-border spinner-border-sm mr-1"></span>
+                        )}
                         Login
                       </button>
                       <hr />
