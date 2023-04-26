@@ -2,9 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../../../store/account/types";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store";
 
 export const NavUserInfo = () => {
   const [isShowProfileMenu, setIsShowProfileMenu] = useState(false);
+
+  const user = useSelector((state: AppState) => state.account.user);
 
   const dispatch = useDispatch();
 
@@ -25,7 +29,7 @@ export const NavUserInfo = () => {
         onClick={() => setIsShowProfileMenu((prev) => !prev)}
       >
         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-          Douglas McGee
+          {`${user?.first_name} ${user?.last_name}` || "User"}
         </span>
         <img
           className="img-profile rounded-circle"

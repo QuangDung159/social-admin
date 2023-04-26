@@ -13,6 +13,7 @@ export const LOAD_CURRENT_LOGIN_USER_FAIL = "LOAD_CURRENT_LOGIN_USER_FAIL";
 export interface AuthenticatedUser {
   _id: string;
   last_name: string;
+  first_name: string,
   email: string;
   avatar: string;
 }
