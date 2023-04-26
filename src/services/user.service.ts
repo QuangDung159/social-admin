@@ -1,35 +1,15 @@
-import env from "react-dotenv";
+import { api } from "../helpers";
 
 const login = async (email: string, password: string) => {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  };
-
-  const response = await fetch(`${env.API_URL}/api/v1/auth`, requestOptions);
-  const data = await handleResponse(response);
-  sessionStorage.setItem("user", JSON.stringify(data));
-  return data;
-};
-
-const handleResponse = (response: any) => {
-  return response.text().then((text: string) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-        return { error: "401" };
-      }
-
-      const error = data ? data.message : response.statusText;
-      return { error };
-    }
-
-    return data;
-  });
+  try {
+    const body = { email, password };
+    const response = await api.post("/v1/auth", body);
+    sessionStorage.setItem("user", JSON.stringify(response.data));
+    return response.data;
+  } catch (error: any) {
+    logout();
+    return { error: error.response.data.message };
+  }
 };
 
 const logout = () => {
