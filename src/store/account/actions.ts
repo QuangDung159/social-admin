@@ -1,38 +1,14 @@
-import { Dispatch } from "react";
 import {
   AccountActionTypes,
+  AuthenticatedUser,
+  LOAD_CURRENT_LOGIN_USER_FAIL,
+  LOAD_CURRENT_LOGIN_USER_REQUEST,
+  LOAD_CURRENT_LOGIN_USER_SUCCESS,
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
 } from "./types";
-import { userService } from "../../services";
-
-export const login = (email: string, password: string) => {
-  return async (dispatch: Dispatch<AccountActionTypes>) => {
-    dispatch({
-      type: LOGIN_REQUEST,
-      payload: {
-        email,
-        password,
-      },
-    });
-
-    const res = await userService.login(email, password);
-
-    if (res && !res.error) {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res,
-      });
-    } else {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: { error: res.error.toString() },
-      });
-    }
-  };
-};
 
 export const onLogin = (email: string, password: string) => {
   return {
@@ -60,6 +36,28 @@ export const loginFail = (error: string) => {
 export const logout = (): AccountActionTypes => {
   return {
     type: LOGOUT,
+  };
+};
+
+export const getCurrentLoginUserRequest = () => {
+  return {
+    type: LOAD_CURRENT_LOGIN_USER_REQUEST,
+  };
+};
+
+export const getCurrentLoginUserSuccess = (user: AuthenticatedUser) => {
+  return {
+    type: LOAD_CURRENT_LOGIN_USER_SUCCESS,
+    payload: {
+      user,
+    },
+  };
+};
+
+export const getCurrentLoginUserFail = (error: string) => {
+  return {
+    type: LOAD_CURRENT_LOGIN_USER_FAIL,
+    payload: { error },
   };
 };
 

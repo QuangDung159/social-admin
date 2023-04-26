@@ -4,6 +4,12 @@ export const LOGIN_FAIL: string = "LOGIN_FAIL";
 
 export const LOGOUT: string = "LOGOUT";
 
+export const LOAD_CURRENT_LOGIN_USER_REQUEST =
+  "LOAD_CURRENT_LOGIN_USER_REQUEST";
+export const LOAD_CURRENT_LOGIN_USER_SUCCESS =
+  "LOAD_CURRENT_LOGIN_USER_SUCCESS";
+export const LOAD_CURRENT_LOGIN_USER_FAIL = "LOAD_CURRENT_LOGIN_USER_FAIL";
+
 export interface AuthenticatedUser {
   _id: string;
   last_name: string;
@@ -50,3 +56,21 @@ export type AccountActionTypes =
   | LoginSuccess
   | LoginFail
   | Logout;
+
+export interface LoadCurrentLoginUserRequest {
+  type: typeof LOAD_CURRENT_LOGIN_USER_REQUEST;
+}
+
+export interface LoadCurrentLoginUserSuccess {
+  type: typeof LOAD_CURRENT_LOGIN_USER_SUCCESS;
+  payload: {
+    user: AuthenticatedUser;
+  };
+}
+
+export interface LoadCurrentLoginUserFail {
+  type: typeof LOAD_CURRENT_LOGIN_USER_FAIL;
+  payload: {
+    error: string;
+  };
+}
