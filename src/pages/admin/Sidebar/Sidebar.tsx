@@ -38,8 +38,8 @@ export const Sidebar = () => {
       <div className="sidebar-heading">Interface</div>
       {/* Nav Item - Pages Collapse Menu */}
       <NavItem label="Components" />
-      <NavItem label="Utilities" />
       {/* Nav Item - Utilities Collapse Menu */}
+      <NavItem label="Utilities" />
       {/* Divider */}
       <hr className="sidebar-divider" />
       {/* Heading */}
