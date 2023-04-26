@@ -1,5 +1,7 @@
-
-import { TOP_TAB_BAR_ALERT, TOP_TAB_BAR_MESSAGE } from "../../../constants/commons";
+import {
+  TOP_BAR_ALERT,
+  TOP_BAR_MESSAGE,
+} from "../../../constants/commons";
 import { NavUserInfo } from "./NavUserInfo";
 import { TopBarItem } from "./TopBarItem";
 import { TopBarSearch } from "./TopBarSearch";
@@ -57,16 +59,13 @@ export const TopBar = () => {
         {/* Nav Item - Alerts */}
         <TopBarItem
           counter="3+"
-          header="Alerts Center"
           icon="fas fa-bell fa-fw"
-          type={TOP_TAB_BAR_ALERT}
+          type={TOP_BAR_ALERT}
         />
-        {/* Nav Item - Messages */}
         <TopBarItem
           counter="9+"
-          header="Message Center"
           icon="fas fa-envelope fa-fw"
-          type={TOP_TAB_BAR_MESSAGE}
+          type={TOP_BAR_MESSAGE}
         />
         <div className="topbar-divider d-none d-sm-block" />
         {/* Nav Item - User Information */}

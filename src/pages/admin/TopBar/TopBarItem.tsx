@@ -1,10 +1,17 @@
-import React from "react";
-import { TOP_TAB_BAR_ALERT } from "../../../constants/commons";
+import { useState } from "react";
+import { TOP_BAR_ALERT } from "../../../constants/commons";
+import { TopBarListAlert } from "./TopBarListAlert";
+import { TopBarListMessage } from "./TopBarListMessage";
 
 export const TopBarItem = ({ counter, header, icon, type }: any) => {
-  const isAlert = type === TOP_TAB_BAR_ALERT;
+  const isAlert = type === TOP_BAR_ALERT;
+  const [isShowDropdown, setIsShowDropdown] = useState(false);
   return (
-    <li className="nav-item dropdown no-arrow mx-1">
+    <li
+      className={`nav-item dropdown no-arrow mx-1 ${
+        isShowDropdown ? "show" : ""
+      }`}
+    >
       <a
         className="nav-link dropdown-toggle"
         href="#"
@@ -12,57 +19,19 @@ export const TopBarItem = ({ counter, header, icon, type }: any) => {
         role="button"
         data-toggle="dropdown"
         aria-haspopup="true"
-        aria-expanded="false"
+        aria-expanded={isShowDropdown}
+        onClick={() => setIsShowDropdown((prev) => !prev)}
       >
-        <i className="fas fa-bell fa-fw" />
-        {/* Counter - Alerts */}
+        <i className={icon} />
         <span className="badge badge-danger badge-counter">{counter}</span>
       </a>
-      {/* Dropdown - Alerts */}
       <div
-        className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="alertsDropdown"
+        className={`dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in ${
+          isShowDropdown ? "show" : ""
+        }`}
+        aria-labelledby={`${isAlert ? "alertDropdown" : "messagesDropdown"}`}
       >
-        <h6 className="dropdown-header">{header}</h6>
-        <a className="dropdown-item d-flex align-items-center" href="#">
-          <div className="mr-3">
-            <div className="icon-circle bg-primary">
-              <i className="fas fa-file-alt text-white" />
-            </div>
-          </div>
-          <div>
-            <div className="small text-gray-500">December 12, 2019</div>
-            <span className="font-weight-bold">
-              A new monthly report is ready to download!
-            </span>
-          </div>
-        </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
-          <div className="mr-3">
-            <div className="icon-circle bg-success">
-              <i className="fas fa-donate text-white" />
-            </div>
-          </div>
-          <div>
-            <div className="small text-gray-500">December 7, 2019</div>
-            $290.29 has been deposited into your account!
-          </div>
-        </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
-          <div className="mr-3">
-            <div className="icon-circle bg-warning">
-              <i className="fas fa-exclamation-triangle text-white" />
-            </div>
-          </div>
-          <div>
-            <div className="small text-gray-500">December 2, 2019</div>
-            Spending Alert: We've noticed unusually high spending for your
-            account.
-          </div>
-        </a>
-        <a className="dropdown-item text-center small text-gray-500" href="#">
-          Show All Alerts
-        </a>
+        {isAlert ? <TopBarListAlert /> : <TopBarListMessage />}
       </div>
     </li>
   );
