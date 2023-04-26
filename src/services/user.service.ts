@@ -1,12 +1,10 @@
 import { api } from "../helpers";
-import { setAuthToken } from "../helpers/setAuthToken";
 
 const login = async (email: string, password: string) => {
   try {
     const body = { email, password };
     const response = await api.post("/v1/auth", body);
     sessionStorage.setItem("user", JSON.stringify(response.data));
-    setAuthToken(response.data.token);
     return response.data;
   } catch (error: any) {
     logout();

@@ -20,7 +20,6 @@ export const Admin = () => {
     });
 
     const data = await userService.getCurrentLoginUser();
-    console.log('data :>> ', data);
     if (!data.error) {
       dispatch({
         type: LOAD_CURRENT_LOGIN_USER_SUCCESS,
