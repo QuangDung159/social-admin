@@ -3,7 +3,11 @@ import { useState } from "react";
 export const NavUserInfo = () => {
   const [isShowProfileMenu, setIsShowProfileMenu] = useState(false);
   return (
-    <li className={`nav-item dropdown no-arrow ${isShowProfileMenu && "show"}`}>
+    <li
+      className={`nav-item dropdown no-arrow ${
+        isShowProfileMenu ? "show" : ""
+      }`}
+    >
       <a
         className="nav-link dropdown-toggle"
         href="#"
@@ -11,7 +15,7 @@ export const NavUserInfo = () => {
         role="button"
         data-toggle="dropdown"
         aria-haspopup="true"
-        aria-expanded="false"
+        aria-expanded={isShowProfileMenu}
         onClick={() => setIsShowProfileMenu((prev) => !prev)}
       >
         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
@@ -25,7 +29,7 @@ export const NavUserInfo = () => {
       {/* Dropdown - User Information */}
       <div
         className={`dropdown-menu dropdown-menu-right shadow animated--grow-in ${
-          isShowProfileMenu && "show"
+          isShowProfileMenu ? "show" : ""
         }`}
         aria-labelledby="userDropdown"
       >
