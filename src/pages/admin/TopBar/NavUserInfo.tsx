@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../../../store/account/types";
+import { Link } from "react-router-dom";
 
 export const NavUserInfo = () => {
   const [isShowProfileMenu, setIsShowProfileMenu] = useState(false);
+
+  const dispatch = useDispatch();
+
   return (
     <li
       className={`nav-item dropdown no-arrow ${
@@ -46,15 +52,21 @@ export const NavUserInfo = () => {
           Activity Log
         </a>
         <div className="dropdown-divider" />
-        <a
+        <Link
+          replace={true}
+          to={"/login"}
           className="dropdown-item"
-          href="#"
           data-toggle="modal"
           data-target="#logoutModal"
+          onClick={() =>
+            dispatch({
+              type: LOGOUT,
+            })
+          }
         >
           <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
           Logout
-        </a>
+        </Link>
       </div>
     </li>
   );
