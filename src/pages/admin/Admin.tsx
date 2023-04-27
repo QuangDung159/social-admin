@@ -1,15 +1,15 @@
 import { useCallback, useEffect } from "react";
-import { Footer } from "./Footer/Footer";
-import { MainContent } from "./MainContent/MainContent";
-import { Sidebar } from "./Sidebar/Sidebar";
-import { TopBar } from "./TopBar/TopBar";
-import { userService } from "../../services";
 import { useDispatch } from "react-redux";
+import { userService } from "../../services";
 import {
   LOAD_CURRENT_LOGIN_USER_FAIL,
   LOAD_CURRENT_LOGIN_USER_REQUEST,
   LOAD_CURRENT_LOGIN_USER_SUCCESS,
 } from "../../store/account/types";
+import { Footer } from "./Footer/Footer";
+import { Home } from "./Home/Home";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { TopBar } from "./TopBar/TopBar";
 
 export const Admin = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export const Admin = () => {
           <TopBar />
           {/* End of Topbar */}
           {/* Begin Page Content */}
-          <MainContent />
+          <Home />
           {/* /.container-fluid */}
         </div>
         {/* End of Main Content */}

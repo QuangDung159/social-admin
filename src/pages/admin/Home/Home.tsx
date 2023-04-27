@@ -1,5 +1,5 @@
 
-export const MainContent = () => {
+export const Home = () => {
   return (
     <div className="container-fluid">
       {/* Page Heading */}
@@ -381,13 +381,21 @@ export const MainContent = () => {
               </div>
               <p>
                 Add some quality, svg illustrations to your project courtesy of{" "}
-                <a target="_blank" rel="nofollow noreferrer" href="https://undraw.co/">
+                <a
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  href="https://undraw.co/"
+                >
                   unDraw
                 </a>
                 , a constantly updated collection of beautiful svg images that
                 you can use completely free and without attribution!
               </p>
-              <a target="_blank" rel="nofollow noreferrer" href="https://undraw.co/">
+              <a
+                target="_blank"
+                rel="nofollow noreferrer"
+                href="https://undraw.co/"
+              >
                 Browse Illustrations on unDraw →
               </a>
             </div>
