@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { userService } from "../../services";
 import {
-  LOAD_CURRENT_LOGIN_USER_FAIL,
-  LOAD_CURRENT_LOGIN_USER_REQUEST,
-  LOAD_CURRENT_LOGIN_USER_SUCCESS,
-} from "../../store/account/types";
+  getCurrentLoginUserFail,
+  getCurrentLoginUserRequest,
+  getCurrentLoginUserSuccess,
+} from "../../store/account/actions";
 import { ListUser } from "../User/ListUser";
 import { Footer } from "./Footer/Footer";
 import { Home } from "./Home/Home";
@@ -17,23 +17,13 @@ export const Admin = () => {
   const dispatch = useDispatch();
 
   const onGetCurrentUser = useCallback(async () => {
-    dispatch({
-      type: LOAD_CURRENT_LOGIN_USER_REQUEST,
-    });
+    dispatch(getCurrentLoginUserRequest());
 
     const data = await userService.getCurrentLoginUser();
     if (!data.error) {
-      dispatch({
-        type: LOAD_CURRENT_LOGIN_USER_SUCCESS,
-        payload: { user: data },
-      });
+      dispatch(getCurrentLoginUserSuccess(data));
     } else {
-      dispatch({
-        type: LOAD_CURRENT_LOGIN_USER_FAIL,
-        payload: {
-          error: data.error,
-        },
-      });
+      dispatch(getCurrentLoginUserFail(data.error));
     }
   }, [dispatch]);
 

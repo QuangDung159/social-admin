@@ -31,7 +31,7 @@ interface LoadPagingUserFail {
 }
 
 export interface UserState {
-  listUser: User[] | null;
+  listUser: Pagination<User> | null;
   loading: boolean;
   total: number;
   deletedCount: number;

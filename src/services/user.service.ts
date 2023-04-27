@@ -39,14 +39,14 @@ const getListUserPaging = async (
   keyword: string,
   currentPage: number,
   pageSize: number
-) => {
+): Promise<any> => {
   try {
     const res = await api.get<Pagination<User>>(
       `/v1/users/paging/${currentPage}`
     );
 
     if (res && res.status === 200) {
-      return res.data;
+      return res;
     } else {
       return {
         error: "Get list user fail",

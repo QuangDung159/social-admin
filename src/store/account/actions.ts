@@ -60,5 +60,3 @@ export const getCurrentLoginUserFail = (error: string) => {
     payload: { error },
   };
 };
-
-export {};

@@ -1,4 +1,43 @@
+import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userService } from "../../services";
+import { AppState } from "../../store";
+import {
+  getListUserPagingFail,
+  getListUserPagingRequest,
+  getListUserPagingSuccess,
+} from "../../store/user/actions";
+import { Pagination } from "../../helpers";
+import { User } from "../../store/user/types";
+
 export const ListUser = () => {
+  const dispatch = useDispatch();
+
+  const listUser = useSelector((state: AppState) => state.user.listUser);
+  const loading = useSelector((state: AppState) => state.user.loading);
+
+  const onFetchListUserPaging = useCallback(async () => {
+    dispatch(getListUserPagingRequest());
+
+    const res = await userService.getListUserPaging("", 1, 10);
+
+    if (res.error) {
+      dispatch(getListUserPagingFail(res.error));
+    } else {
+      dispatch(getListUserPagingSuccess(res.data));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    onFetchListUserPaging();
+  }, [onFetchListUserPaging]);
+
+  useEffect(() => {
+    if (listUser && !loading) {
+      console.log("list.items :>> ", listUser.items);
+    }
+  }, [listUser, loading]);
+
   return (
     <div className="container-fluid">
       {/* Page Heading */}
