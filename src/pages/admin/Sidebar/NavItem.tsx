@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const NavItem = ({ label }: any) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   return (
     <li className="nav-item">
       <a
+        role="button"
         onClick={() => {
           setIsCollapsed((prev) => !prev);
         }}
         className={`nav-link ${isCollapsed && "collapsed"}`}
-        href="/#"
         data-toggle="collapse"
         data-target="#collapseTwo"
         aria-expanded={!isCollapsed}
@@ -26,11 +27,11 @@ export const NavItem = ({ label }: any) => {
       >
         <div className="bg-white py-2 collapse-inner rounded">
           <h6 className="collapse-header">Custom Components:</h6>
-          <a className="collapse-item" href="buttons.html">
-            Buttons
-          </a>
+          <Link className="collapse-item" to={"/list-user"}>
+            Listing
+          </Link>
           <a className="collapse-item" href="cards.html">
-            Cards
+            Add New
           </a>
         </div>
       </div>

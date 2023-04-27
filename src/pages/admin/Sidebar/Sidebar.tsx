@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { NavItem } from "./NavItem";
 import { Link } from "react-router-dom";
+import { NavItem } from "./NavItem";
 
 export const Sidebar = () => {
   const [sidebarToggled, setSidebarToggled] = useState(false);
@@ -28,19 +28,25 @@ export const Sidebar = () => {
       <hr className="sidebar-divider my-0" />
       {/* Nav Item - Dashboard */}
       <li className="nav-item active">
-        <a className="nav-link" href="index.html">
+        <Link className="nav-link" to={"/"}>
           <i className="fas fa-fw fa-tachometer-alt" />
           <span>Dashboard</span>
-        </a>
+        </Link>
       </li>
       {/* Divider */}
       <hr className="sidebar-divider" />
       {/* Heading */}
       <div className="sidebar-heading">Interface</div>
       {/* Nav Item - Pages Collapse Menu */}
-      <NavItem label="Components" />
+      <NavItem label="Users" />
       {/* Nav Item - Utilities Collapse Menu */}
       <NavItem label="Utilities" />
+      <li className="nav-item">
+        <Link className="nav-link" to={"/list-user"}>
+          <i className="fas fa-fw fa-table" />
+          <span>List User</span>
+        </Link>
+      </li>
       {/* Divider */}
       <hr className="sidebar-divider" />
       {/* Heading */}
