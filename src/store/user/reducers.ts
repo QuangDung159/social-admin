@@ -2,6 +2,7 @@ import {
   LOAD_PAGING_USER_FAIL,
   LOAD_PAGING_USER_REQUEST,
   LOAD_PAGING_USER_SUCCESS,
+  UPDATE_KEYWORD,
   UserActionTypes,
   UserState,
 } from "./types";
@@ -13,6 +14,7 @@ const initState: UserState = {
   loading: false,
   total: 0,
   pageSize: 2,
+  keyword: null,
 };
 
 const userReducer = (
@@ -42,6 +44,12 @@ const userReducer = (
         ...state,
         loading: false,
         error: action.payload.error,
+      };
+    }
+    case UPDATE_KEYWORD: {
+      return {
+        ...state,
+        keyword: action.payload.keyword,
       };
     }
     default: {

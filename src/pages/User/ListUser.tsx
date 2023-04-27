@@ -17,21 +17,25 @@ export const ListUser = () => {
   const listUser = useSelector((state: AppState) => state.user.listUser);
   const totalItem = useSelector((state: AppState) => state.user.total);
   const pageSize = useSelector((state: AppState) => state.user.pageSize);
+  const keyword = useSelector((state: AppState) => state.user.keyword);
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const onFetchListUserPaging = useCallback(async () => {
     dispatch(getListUserPagingRequest());
 
-    const res = await userService.getListUserPaging("", currentPage, pageSize);
-    console.log('res :>> ', res);
+    const res = await userService.getListUserPaging(
+      keyword || "",
+      currentPage,
+      pageSize
+    );
 
     if (res.error) {
       dispatch(getListUserPagingFail(res.error));
     } else {
       dispatch(getListUserPagingSuccess(res.data));
     }
-  }, [currentPage, dispatch, pageSize]);
+  }, [currentPage, dispatch, pageSize, keyword]);
 
   useEffect(() => {
     onFetchListUserPaging();

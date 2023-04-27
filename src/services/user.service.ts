@@ -42,7 +42,7 @@ const getListUserPaging = async (
 ): Promise<any> => {
   try {
     const res = await api.get<Pagination<User>>(
-      `/v1/users/paging/${currentPage}`
+      `/v1/users/paging/${currentPage}?keyword=${keyword}`
     );
 
     if (res && res.status === 200) {
