@@ -42,10 +42,12 @@ export const Admin = () => {
           <TopBar />
           {/* End of Topbar */}
           {/* Begin Page Content */}
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/list-user" element={<ListUser />}></Route>
-          </Routes>
+          <div className="container-fluid">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/list-user" element={<ListUser />}></Route>
+            </Routes>
+          </div>
           {/* <ListUser /> */}
           {/* /.container-fluid */}
         </div>

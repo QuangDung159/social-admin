@@ -32,7 +32,7 @@ export const ListUser = () => {
   }, [onFetchListUserPaging]);
 
   return (
-    <div className="container-fluid">
+    <>
       {/* Page Heading */}
       <h1 className="h3 mb-2 text-gray-800">Tables</h1>
       <p className="mb-4">
@@ -77,6 +77,6 @@ export const ListUser = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
