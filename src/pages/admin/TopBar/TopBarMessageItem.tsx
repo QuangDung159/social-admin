@@ -1,6 +1,6 @@
 export const TopBarMessageItem = ({ messageItem }: any) => {
   return (
-    <a className="dropdown-item d-flex align-items-center" href="#">
+    <a className="dropdown-item d-flex align-items-center" href="/#">
       <div className="dropdown-list-image mr-3">
         <img className="rounded-circle" src={messageItem.imgUrl} alt="..." />
         <div className="status-indicator bg-success" />

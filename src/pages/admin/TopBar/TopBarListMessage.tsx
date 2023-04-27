@@ -36,7 +36,7 @@ export const TopBarListMessage = () => {
           sender: "Chicken the Dog",
         }}
       />
-      <a className="dropdown-item text-center small text-gray-500" href="#">
+      <a className="dropdown-item text-center small text-gray-500" href="/#">
         Read More Messages
       </a>
     </>

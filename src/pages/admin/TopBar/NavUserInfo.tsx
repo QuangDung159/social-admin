@@ -20,7 +20,7 @@ export const NavUserInfo = () => {
     >
       <a
         className="nav-link dropdown-toggle"
-        href="#"
+        href="/#"
         id="userDropdown"
         role="button"
         data-toggle="dropdown"
@@ -31,7 +31,7 @@ export const NavUserInfo = () => {
         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
           {`${user?.first_name} ${user?.last_name}` || "User"}
         </span>
-        <img className="img-profile rounded-circle" src={user?.avatar} />
+        <img className="img-profile rounded-circle" src={user?.avatar} alt="..." />
       </a>
       {/* Dropdown - User Information */}
       <div
@@ -40,15 +40,15 @@ export const NavUserInfo = () => {
         }`}
         aria-labelledby="userDropdown"
       >
-        <a className="dropdown-item" href="#">
+        <a className="dropdown-item" href="/#">
           <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
           Profile
         </a>
-        <a className="dropdown-item" href="#">
+        <a className="dropdown-item" href="/#">
           <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
           Settings
         </a>
-        <a className="dropdown-item" href="#">
+        <a className="dropdown-item" href="/#">
           <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
           Activity Log
         </a>

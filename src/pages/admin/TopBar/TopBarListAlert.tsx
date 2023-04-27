@@ -36,7 +36,7 @@ export const TopBarListAlert = () => {
           },
         }}
       />
-      <a className="dropdown-item text-center small text-gray-500" href="#">
+      <a className="dropdown-item text-center small text-gray-500" href="/#">
         Show All Alerts
       </a>
     </>

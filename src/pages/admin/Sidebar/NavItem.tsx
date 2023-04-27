@@ -9,7 +9,7 @@ export const NavItem = ({ label }: any) => {
           setIsCollapsed((prev) => !prev);
         }}
         className={`nav-link ${isCollapsed && "collapsed"}`}
-        href="#"
+        href="/#"
         data-toggle="collapse"
         data-target="#collapseTwo"
         aria-expanded={!isCollapsed}

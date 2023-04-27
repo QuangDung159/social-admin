@@ -2,7 +2,7 @@ import React from "react";
 
 export const TopBarAlertItem = ({alertItem}: any) => {
   return (
-    <a className="dropdown-item d-flex align-items-center" href="#">
+    <a className="dropdown-item d-flex align-items-center" href="/#">
       <div className="mr-3">
         <div className={alertItem.icon.background}>
           <i className={alertItem.icon.name} />
