@@ -13,7 +13,7 @@ export const LOAD_CURRENT_LOGIN_USER_FAIL = "LOAD_CURRENT_LOGIN_USER_FAIL";
 export interface AuthenticatedUser {
   _id: string;
   last_name: string;
-  first_name: string,
+  first_name: string;
   email: string;
   avatar: string;
 }
@@ -45,19 +45,6 @@ export interface Logout {
   type: typeof LOGOUT;
 }
 
-export interface AccountState {
-  user: AuthenticatedUser | null;
-  loading: boolean;
-  error: string | null;
-  token: string | null;
-}
-
-export type AccountActionTypes =
-  | LoginRequest
-  | LoginSuccess
-  | LoginFail
-  | Logout;
-
 export interface LoadCurrentLoginUserRequest {
   type: typeof LOAD_CURRENT_LOGIN_USER_REQUEST;
 }
@@ -75,3 +62,16 @@ export interface LoadCurrentLoginUserFail {
     error: string;
   };
 }
+
+export interface AccountState {
+  user: AuthenticatedUser | null;
+  loading: boolean;
+  error: string | null;
+  token: string | null;
+}
+
+export type AccountActionTypes =
+  | LoginRequest
+  | LoginSuccess
+  | LoginFail
+  | Logout;

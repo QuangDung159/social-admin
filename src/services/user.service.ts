@@ -1,4 +1,5 @@
-import { api } from "../helpers";
+import { Pagination, api } from "../helpers";
+import { User } from "../store/user/types";
 
 const login = async (email: string, password: string) => {
   try {
@@ -34,4 +35,29 @@ const getCurrentLoginUser = async (): Promise<any> => {
   }
 };
 
-export const userService = { login, getCurrentLoginUser };
+const getListUserPaging = async (
+  keyword: string,
+  currentPage: number,
+  pageSize: number
+) => {
+  try {
+    const res = await api.get<Pagination<User>>(
+      `/v1/users/paging/${currentPage}`
+    );
+
+    if (res && res.status === 200) {
+      return res.data;
+    } else {
+      return {
+        error: "Get list user fail",
+      };
+    }
+  } catch (error) {
+    console.log("getListUserPaging error :>> ", error);
+    return {
+      error: "Get list user fail",
+    };
+  }
+};
+
+export const userService = { login, getCurrentLoginUser, getListUserPaging };
