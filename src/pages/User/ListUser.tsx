@@ -7,14 +7,13 @@ import {
   getListUserPagingRequest,
   getListUserPagingSuccess,
 } from "../../store/user/actions";
-import { Pagination } from "../../helpers";
+import { UserItemRow } from "./UserItemRow";
 import { User } from "../../store/user/types";
 
 export const ListUser = () => {
   const dispatch = useDispatch();
 
   const listUser = useSelector((state: AppState) => state.user.listUser);
-  const loading = useSelector((state: AppState) => state.user.loading);
 
   const onFetchListUserPaging = useCallback(async () => {
     dispatch(getListUserPagingRequest());
@@ -31,12 +30,6 @@ export const ListUser = () => {
   useEffect(() => {
     onFetchListUserPaging();
   }, [onFetchListUserPaging]);
-
-  useEffect(() => {
-    if (listUser && !loading) {
-      console.log("list.items :>> ", listUser.items);
-    }
-  }, [listUser, loading]);
 
   return (
     <div className="container-fluid">
@@ -67,24 +60,19 @@ export const ListUser = () => {
             >
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Avatar</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
-                </tr>
-              </tbody>
+              {listUser && listUser.items.length > 0 && (
+                <tbody>
+                  {listUser!.items.map((userItem: User) => (
+                    <UserItemRow key={userItem._id} userItem={userItem} />
+                  ))}
+                </tbody>
+              )}
             </table>
           </div>
         </div>
