@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userService } from "../../services";
 import { AppState } from "../../store";
@@ -9,27 +9,37 @@ import {
 } from "../../store/user/actions";
 import { UserItemRow } from "./UserItemRow";
 import { User } from "../../store/user/types";
+import { Pagination } from "../../components";
 
 export const ListUser = () => {
   const dispatch = useDispatch();
 
   const listUser = useSelector((state: AppState) => state.user.listUser);
+  const totalItem = useSelector((state: AppState) => state.user.total);
+  const pageSize = useSelector((state: AppState) => state.user.pageSize);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onFetchListUserPaging = useCallback(async () => {
     dispatch(getListUserPagingRequest());
 
-    const res = await userService.getListUserPaging("", 1, 10);
+    const res = await userService.getListUserPaging("", currentPage, pageSize);
+    console.log('res :>> ', res);
 
     if (res.error) {
       dispatch(getListUserPagingFail(res.error));
     } else {
       dispatch(getListUserPagingSuccess(res.data));
     }
-  }, [dispatch]);
+  }, [currentPage, dispatch, pageSize]);
 
   useEffect(() => {
     onFetchListUserPaging();
   }, [onFetchListUserPaging]);
+
+  const onPageChanged = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <>
@@ -75,6 +85,14 @@ export const ListUser = () => {
               )}
             </table>
           </div>
+        </div>
+        <div className="card-footer">
+          <Pagination
+            totalRecords={totalItem}
+            pageLimit={5}
+            pageSize={pageSize}
+            onPageChanged={onPageChanged}
+          />
         </div>
       </div>
     </>

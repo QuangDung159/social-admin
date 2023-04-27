@@ -12,6 +12,7 @@ const initState: UserState = {
   listUser: null,
   loading: false,
   total: 0,
+  pageSize: 2,
 };
 
 const userReducer = (
@@ -31,6 +32,8 @@ const userReducer = (
         ...state,
         loading: false,
         listUser: action.payload.listUser,
+        total: action.payload.listUser.total,
+        pageSize: action.payload.listUser.pageSize,
         error: null,
       };
     }

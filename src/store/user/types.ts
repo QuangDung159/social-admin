@@ -36,6 +36,7 @@ export interface UserState {
   total: number;
   deletedCount: number;
   error: string | null;
+  pageSize: number;
 }
 
 export type UserActionTypes =
