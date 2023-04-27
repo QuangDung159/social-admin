@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "../../components";
 import { userService } from "../../services";
 import { AppState } from "../../store";
 import {
@@ -7,10 +8,8 @@ import {
   getListUserPagingRequest,
   getListUserPagingSuccess,
 } from "../../store/user/actions";
-import { UserItemRow } from "./UserItemRow";
 import { User } from "../../store/user/types";
-import { Pagination } from "../../components";
-import { useLocation } from "react-router";
+import { UserItemRow } from "./UserItemRow";
 
 export const ListUser = () => {
   const dispatch = useDispatch();
