@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavItem } from "./NavItem";
+import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
   const [sidebarToggled, setSidebarToggled] = useState(false);
@@ -55,10 +56,10 @@ export const Sidebar = () => {
       </li>
       {/* Nav Item - Tables */}
       <li className="nav-item">
-        <a className="nav-link" href="tables.html">
+        <Link className="nav-link" to={"/list-user"}>
           <i className="fas fa-fw fa-table" />
           <span>Tables</span>
-        </a>
+        </Link>
       </li>
       {/* Divider */}
       <hr className="sidebar-divider d-none d-md-block" />

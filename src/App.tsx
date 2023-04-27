@@ -23,7 +23,7 @@ function App() {
             element={
               account.token ? <Admin /> : <Navigate to="/login" replace />
             }
-            path="/"
+            path="/*"
           />
           <Route
             element={account.token ? <Navigate to="/" replace /> : <Register />}
