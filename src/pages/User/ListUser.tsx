@@ -10,6 +10,7 @@ import {
 import { UserItemRow } from "./UserItemRow";
 import { User } from "../../store/user/types";
 import { Pagination } from "../../components";
+import { useLocation } from "react-router";
 
 export const ListUser = () => {
   const dispatch = useDispatch();
