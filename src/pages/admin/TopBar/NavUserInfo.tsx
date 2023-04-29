@@ -4,6 +4,7 @@ import { LOGOUT } from "../../../store/account/types";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store";
+import { urlConst } from "../../../constants/url";
 
 export const NavUserInfo = () => {
   const [isShowProfileMenu, setIsShowProfileMenu] = useState(false);
@@ -58,7 +59,7 @@ export const NavUserInfo = () => {
         <div className="dropdown-divider" />
         <Link
           replace={true}
-          to={"/login"}
+          to={urlConst.ACCOUNT_LOGIN}
           className="dropdown-item"
           data-toggle="modal"
           data-target="#logoutModal"

@@ -12,6 +12,8 @@ import { Footer } from "./Footer/Footer";
 import { Home } from "./Home/Home";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { TopBar } from "./TopBar/TopBar";
+import { AddNewUser } from "../User/AddNewUser";
+import { urlConst } from "../../constants/url";
 
 export const Admin = () => {
   const dispatch = useDispatch();
@@ -44,8 +46,12 @@ export const Admin = () => {
           {/* Begin Page Content */}
           <div className="container-fluid">
             <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/list-user" element={<ListUser />}></Route>
+              <Route path={urlConst.HOME} element={<Home />}></Route>
+              <Route
+                path={urlConst.USER_LISTING}
+                element={<ListUser />}
+              ></Route>
+              <Route path={urlConst.USER_ADD_NEW} element={<AddNewUser />} />
             </Routes>
           </div>
           {/* <ListUser /> */}

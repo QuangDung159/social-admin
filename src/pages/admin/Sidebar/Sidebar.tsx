@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavItem } from "./NavItem";
+import { urlConst } from "../../../constants/url";
 
 export const Sidebar = () => {
   const [sidebarToggled, setSidebarToggled] = useState(false);
@@ -42,7 +43,7 @@ export const Sidebar = () => {
       {/* Nav Item - Utilities Collapse Menu */}
       <NavItem label="Utilities" />
       <li className="nav-item">
-        <Link className="nav-link" to={"/list-user"}>
+        <Link className="nav-link" to={urlConst.USER_LISTING}>
           <i className="fas fa-fw fa-table" />
           <span>List User</span>
         </Link>
@@ -62,7 +63,7 @@ export const Sidebar = () => {
       </li>
       {/* Nav Item - Tables */}
       <li className="nav-item">
-        <Link className="nav-link" to={"/list-user"}>
+        <Link className="nav-link" to={urlConst.USER_LISTING}>
           <i className="fas fa-fw fa-table" />
           <span>Tables</span>
         </Link>

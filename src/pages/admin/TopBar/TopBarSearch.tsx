@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateKeyword } from "../../../store/user/actions";
 import { useLocation } from "react-router";
+import { urlConst } from "../../../constants/url";
 
 export const TopBarSearch = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const TopBarSearch = () => {
             className="btn btn-primary"
             type="button"
             onClick={() => {
-              if (route.pathname === "/list-user") {
+              if (route.pathname === urlConst.USER_ADD_NEW) {
                 dispatch(updateKeyword(keywordInput));
               }
             }}

@@ -11,6 +11,7 @@ import {
   onLogin,
   onLoginSuccess,
 } from "../../store/account/actions";
+import { urlConst } from "../../constants/url";
 
 export const Login = () => {
   const [input, setInput] = useState({
@@ -162,7 +163,7 @@ export const Login = () => {
                       </a>
                     </div>
                     <div className="text-center">
-                      <Link to={"/register"} className="small">
+                      <Link to={urlConst.ACCOUNT_REGISTER} className="small">
                         Create an Account!
                       </Link>
                     </div>

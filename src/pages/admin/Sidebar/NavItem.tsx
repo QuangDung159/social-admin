@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { urlConst } from "../../../constants/url";
 
 export const NavItem = ({ label }: any) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -27,12 +29,16 @@ export const NavItem = ({ label }: any) => {
       >
         <div className="bg-white py-2 collapse-inner rounded animated--fade-in">
           <h6 className="collapse-header">Custom Components:</h6>
-          <Link className="collapse-item" to={"/list-user"}>
+          <Link className="collapse-item" to={urlConst.USER_LISTING}>
             Listing
           </Link>
-          <a className="collapse-item" href="cards.html">
+          <Link
+            to={urlConst.USER_ADD_NEW}
+            className="collapse-item"
+            role="button"
+          >
             Add New
-          </a>
+          </Link>
         </div>
       </div>
     </li>

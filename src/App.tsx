@@ -8,6 +8,7 @@ import { Admin } from "./pages/admin";
 import { AppState } from "./store";
 import { AccountState } from "./store/account/types";
 import "./styles/sb-admin-2.min.css";
+import { urlConst } from "./constants/url";
 
 function App() {
   const account: AccountState = useSelector((state: AppState) => state.account);
@@ -16,18 +17,34 @@ function App() {
       <Router>
         <Routes>
           <Route
-            element={account.token ? <Navigate to="/" replace /> : <Login />}
-            path="/login"
+            element={
+              account.token ? (
+                <Navigate to={urlConst.HOME} replace />
+              ) : (
+                <Login />
+              )
+            }
+            path={urlConst.ACCOUNT_LOGIN}
           />
           <Route
             element={
-              account.token ? <Admin /> : <Navigate to="/login" replace />
+              account.token ? (
+                <Admin />
+              ) : (
+                <Navigate to={urlConst.ACCOUNT_LOGIN} replace />
+              )
             }
             path="/*"
           />
           <Route
-            element={account.token ? <Navigate to="/" replace /> : <Register />}
-            path="/register"
+            element={
+              account.token ? (
+                <Navigate to={urlConst.HOME} replace />
+              ) : (
+                <Register />
+              )
+            }
+            path={urlConst.ACCOUNT_REGISTER}
           />
         </Routes>
       </Router>

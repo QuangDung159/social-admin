@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { urlConst } from "../../constants/url";
 
 export const Register = () => {
   return (
@@ -86,7 +87,7 @@ export const Register = () => {
                   </a>
                 </div>
                 <div className="text-center">
-                  <Link className="small" to={"/login"}>
+                  <Link className="small" to={urlConst.ACCOUNT_LOGIN}>
                     Already have an account? Login!
                   </Link>
                 </div>
