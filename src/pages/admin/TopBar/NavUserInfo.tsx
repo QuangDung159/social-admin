@@ -20,7 +20,6 @@ export const NavUserInfo = () => {
     >
       <a
         className="nav-link dropdown-toggle"
-        href="/#"
         id="userDropdown"
         role="button"
         data-toggle="dropdown"
@@ -31,7 +30,11 @@ export const NavUserInfo = () => {
         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
           {`${user?.first_name} ${user?.last_name}` || "User"}
         </span>
-        <img className="img-profile rounded-circle" src={user?.avatar} alt="..." />
+        <img
+          className="img-profile rounded-circle"
+          src={user?.avatar}
+          alt="..."
+        />
       </a>
       {/* Dropdown - User Information */}
       <div

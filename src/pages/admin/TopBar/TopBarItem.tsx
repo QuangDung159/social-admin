@@ -14,7 +14,6 @@ export const TopBarItem = ({ counter, header, icon, type }: any) => {
     >
       <a
         className="nav-link dropdown-toggle"
-        href="/#"
         id="alertsDropdown"
         role="button"
         data-toggle="dropdown"

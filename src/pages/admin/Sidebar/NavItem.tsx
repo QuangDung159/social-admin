@@ -25,7 +25,7 @@ export const NavItem = ({ label }: any) => {
         aria-labelledby="headingTwo"
         data-parent="#accordionSidebar"
       >
-        <div className="bg-white py-2 collapse-inner rounded">
+        <div className="bg-white py-2 collapse-inner rounded animated--fade-in">
           <h6 className="collapse-header">Custom Components:</h6>
           <Link className="collapse-item" to={"/list-user"}>
             Listing
